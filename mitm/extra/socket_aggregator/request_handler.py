@@ -1,9 +1,9 @@
-from mitm import BaseMitmRequestHandler
-from mitm.request_handler.fixed_destination import BaseFixedDestinationMitmRequestHandler
-from mitm.socket_stream_forwarder import SocketStreamForwarder
+from mitm.core import BaseWithDestinationMitmRequestHandler
+from mitm.extra.socket_aggregator.socket_aggregator import MitmSocketAggregator
+from mitm.extra.stream_forwarder import SocketStreamForwarder
 
 
-class BaseAggregatorMitmRequestHandler(BaseFixedDestinationMitmRequestHandler):
+class BaseAggregatorMitmRequestHandler(BaseWithDestinationMitmRequestHandler):
     def setup_mitm(self, server_socket, client_socket):
         aggregator = self.get_mitm_socket_aggregator()
 
@@ -19,4 +19,7 @@ class BaseAggregatorMitmRequestHandler(BaseFixedDestinationMitmRequestHandler):
         self.forwarder_from_aggregator.wait()
 
     def get_mitm_socket_aggregator(self):
+        """
+        :rtype: MitmSocketAggregator
+        """
         raise NotImplementedError()
