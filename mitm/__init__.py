@@ -1,10 +1,1 @@
-from mitm.aggregator import MitmSocketAggregator
-from mitm.config import ENDPOINT_SERVER, ENDPOINT_CLIENT
-from mitm.in_socket import InSocket
-from mitm.out_socket import OutSocket
-from mitm.out_socket.data_processor.format import FormatDataProcessor
-from mitm.out_socket.data_processor.formatter.codec.base64 import Base64Codec
-from mitm.out_socket.data_processor.formatter.decoder_unformatter import DecodeAndEndpointUnformatter
-from mitm.out_socket.data_processor.formatter.encoder_formatter import EncodeAndEndpointFormatter
-from mitm.out_socket.data_processor.unformat_and_route import UnformatAndRouteByEndpointDataProcessor
-from mitm.request_handler.base import BaseMitmRequestHandler
+from mitm.core import set_destination_endpoint, BaseMitmRequestHandler, BaseWithDestinationMitmRequestHandler
