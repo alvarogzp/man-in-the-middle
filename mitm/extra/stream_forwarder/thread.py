@@ -1,6 +1,6 @@
 import threading
 
-from mitm.config import KILL_THREADS_WHEN_MAIN_ENDS
+from mitm.extra.stream_forwarder.config import KILL_THREADS_WHEN_MAIN_ENDS
 
 
 class Thread(threading.Thread):
