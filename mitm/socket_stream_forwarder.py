@@ -1,5 +1,5 @@
-from app.thread import Thread
 from mitm.config import RECV_BUFFER
+from mitm.thread import Thread
 
 
 class SocketStreamForwarder:

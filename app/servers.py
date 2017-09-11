@@ -1,7 +1,7 @@
 import SocketServer
 
-from app.thread import Thread
 from mitm.config import KILL_THREADS_WHEN_MAIN_ENDS
+from mitm.thread import Thread
 
 
 class SimpleTCPServer(SocketServer.TCPServer):
