@@ -1,4 +1,4 @@
-from mitm.out_socket.data_processor import DataProcessor
+from mitm.extra.data_processor.out_socket.data_processor import DataProcessor
 
 
 class DataProcessorGroup(DataProcessor):

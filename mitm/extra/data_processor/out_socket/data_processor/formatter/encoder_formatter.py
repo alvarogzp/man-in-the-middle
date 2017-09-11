@@ -1,4 +1,4 @@
-from mitm.config import MESSAGE_ENDPOINT_SEPARATOR
+from mitm.extra.data_processor.config import MESSAGE_ENDPOINT_SEPARATOR
 
 
 class EncodeAndEndpointFormatter:

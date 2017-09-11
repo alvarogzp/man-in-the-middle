@@ -1,4 +1,7 @@
-class InSocket:
+from mitm.extra.stream_forwarder import InSocket
+
+
+class FileInSocket(InSocket):
     def __init__(self, rfile):
         self.rfile = rfile
 

@@ -1,4 +1,4 @@
-from mitm.config import ENDPOINT_SERVER, ENDPOINT_CLIENT
+from mitm.extra.data_processor.config import MESSAGE_ENDPOINT_SERVER, MESSAGE_ENDPOINT_CLIENT
 
 
 class EndpointRouter:
@@ -7,7 +7,7 @@ class EndpointRouter:
         self.client_socket = client_socket
 
     def get(self, endpoint):
-        if endpoint == ENDPOINT_SERVER:
+        if endpoint == MESSAGE_ENDPOINT_SERVER:
             return self.client_socket
-        elif endpoint == ENDPOINT_CLIENT:
+        elif endpoint == MESSAGE_ENDPOINT_CLIENT:
             return self.server_socket
