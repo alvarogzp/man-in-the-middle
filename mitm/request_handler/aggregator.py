@@ -1,8 +1,9 @@
 from mitm import BaseMitmRequestHandler
+from mitm.request_handler.fixed_destination import BaseFixedDestinationMitmRequestHandler
 from mitm.socket_stream_forwarder import SocketStreamForwarder
 
 
-class BaseAggregatorMitmRequestHandler(BaseMitmRequestHandler):
+class BaseAggregatorMitmRequestHandler(BaseFixedDestinationMitmRequestHandler):
     def setup_mitm(self, server_socket, client_socket):
         aggregator = self.get_mitm_socket_aggregator()
 

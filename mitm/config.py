@@ -1,5 +1,3 @@
-DESTINATION_ENDPOINT = ('127.0.0.1', 4747)  # TODO remove, it should not be hardcoded
-
 RECV_BUFFER = 4096
 KILL_THREADS_WHEN_MAIN_ENDS = True
 

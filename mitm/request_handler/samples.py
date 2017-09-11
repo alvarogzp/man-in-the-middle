@@ -13,6 +13,7 @@ from mitm.out_socket.data_processor.group import DataProcessorGroup
 from mitm.out_socket.data_processor.unformat_and_route import UnformatAndRouteByEndpointDataProcessor
 from mitm.request_handler.aggregator import BaseAggregatorMitmRequestHandler
 from mitm.request_handler.base import BaseMitmRequestHandler
+from mitm.request_handler.fixed_destination import BaseFixedDestinationMitmRequestHandler
 from mitm.socket_stream_forwarder import SocketStreamForwarder
 
 
@@ -42,7 +43,7 @@ class StdoutRedirectMitmRequestHandler(BaseAggregatorMitmRequestHandler):
         return MitmSocketAggregator(server_socket, client_socket, recv_socket, send_socket)
 
 
-class StdoutViewMitmRequestHandler(BaseMitmRequestHandler):
+class StdoutViewMitmRequestHandler(BaseFixedDestinationMitmRequestHandler):
     """Prints data to the stdout in base64 format for user to view what is being sent, but acts as a simple proxy"""
 
     def setup_mitm(self, server_socket, client_socket):
@@ -70,7 +71,7 @@ class StdoutViewMitmRequestHandler(BaseMitmRequestHandler):
         self.forwarder_from_client.wait()
 
 
-class SimpleMitmRequestHandler(BaseMitmRequestHandler):
+class SimpleMitmRequestHandler(BaseFixedDestinationMitmRequestHandler):
     """Simple implementation that simply forwards data to the destination, acting as a mere proxy"""
 
     def setup_mitm(self, server_socket, client_socket):

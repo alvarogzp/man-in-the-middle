@@ -1,7 +1,4 @@
 import SocketServer
-import socket
-
-from mitm.config import DESTINATION_ENDPOINT
 
 
 class BaseMitmRequestHandler(SocketServer.BaseRequestHandler):
@@ -11,7 +8,7 @@ class BaseMitmRequestHandler(SocketServer.BaseRequestHandler):
         self.loop()
 
     def connect_to_destination(self):
-        return socket.create_connection(DESTINATION_ENDPOINT)
+        raise NotImplementedError()
 
     def setup_mitm(self, server_socket, client_socket):
         raise NotImplementedError()
