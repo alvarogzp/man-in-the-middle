@@ -16,11 +16,6 @@ from mitm.request_handler.base import BaseMitmRequestHandler
 from mitm.socket_stream_forwarder import SocketStreamForwarder
 
 
-class SimpleMitmRequestHandler(BaseMitmRequestHandler):
-    """Simple implementation that simply forwards data to the destination, acting as a mere proxy"""
-    pass
-
-
 class StdoutRedirectMitmRequestHandler(BaseAggregatorMitmRequestHandler):
     """Redirects data to the stdout in base64 format, expecting user to input modified data to be sent"""
 
@@ -65,6 +60,24 @@ class StdoutViewMitmRequestHandler(BaseMitmRequestHandler):
         client_socket_stdout_processor = FormatDataProcessor(client_socket_stdout_formatter, client_socket_stdout_action)
         client_socket_forward_processor = ForwardDataProcessor(server_socket)
         client_socket_processor = DataProcessorGroup(client_socket_forward_processor, client_socket_stdout_processor)
+        client_mitm_out_socket = OutSocket(client_socket_processor)
+
+        self.forwarder_from_server = SocketStreamForwarder(server_socket, server_mitm_out_socket).forward()
+        self.forwarder_from_client = SocketStreamForwarder(client_socket, client_mitm_out_socket).forward()
+
+    def loop(self):
+        self.forwarder_from_server.wait()
+        self.forwarder_from_client.wait()
+
+
+class SimpleMitmRequestHandler(BaseMitmRequestHandler):
+    """Simple implementation that simply forwards data to the destination, acting as a mere proxy"""
+
+    def setup_mitm(self, server_socket, client_socket):
+        server_socket_processor = ForwardDataProcessor(client_socket)
+        server_mitm_out_socket = OutSocket(server_socket_processor)
+
+        client_socket_processor = ForwardDataProcessor(server_socket)
         client_mitm_out_socket = OutSocket(client_socket_processor)
 
         self.forwarder_from_server = SocketStreamForwarder(server_socket, server_mitm_out_socket).forward()
