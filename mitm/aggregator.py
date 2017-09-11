@@ -1,4 +1,4 @@
-from mitm.out_socket.data_processor.router import EndpointRouter
+from mitm.out_socket.data_processor.router.endpoint import EndpointRouter
 
 
 class MitmSocketAggregator:
