@@ -1,5 +1,6 @@
 from app.servers import ThreadedTCPServer, SimpleTCPServer
-from mitm.extra.samples import SimpleMitmRequestHandler, StdoutViewMitmRequestHandler, StdoutRedirectMitmRequestHandler
+from mitm.extra.request_handler import SimpleMitmRequestHandler, StdoutViewMitmRequestHandler, \
+    StdoutRedirectMitmRequestHandler
 
 LISTEN_ADDRESS = ""
 
