@@ -1,6 +1,6 @@
 import SocketServer
 
-from mitm import Thread, KILL_THREADS_WHEN_MAIN_ENDS
+import mitm
 
 
 class SimpleTCPServer(SocketServer.TCPServer):
@@ -9,10 +9,10 @@ class SimpleTCPServer(SocketServer.TCPServer):
 
 
 class ThreadedTCPServer(SocketServer.ThreadingTCPServer):
-    daemon_threads = KILL_THREADS_WHEN_MAIN_ENDS
+    daemon_threads = mitm.KILL_THREADS_WHEN_MAIN_ENDS
 
     def start_background(self):
-        Thread(target=self.serve_forever).start()
+        mitm.Thread(target=self.serve_forever).start()
 
     def start_foreground(self):
         self.serve_forever()
